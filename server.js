@@ -1,5 +1,5 @@
 const http = require('http')
-const port = 3000
+const port = process.env.OPENSHIFT_NODEJS_PORT || 2500;
 
 const requestHandler = (request, response) => {
   console.log(request.url)
