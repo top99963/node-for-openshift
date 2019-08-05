@@ -1,5 +1,6 @@
 const http = require('http')
-const port = process.env.OPENSHIFT_NODEJS_PORT || 2500;
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 const requestHandler = (request, response) => {
   console.log(request.url)
@@ -8,10 +9,17 @@ const requestHandler = (request, response) => {
 
 const server = http.createServer(requestHandler)
 
-server.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
+// server.listen(port, (err) => {
+//   if (err) {
+//     return console.log('something bad happened', err)
+//   }
 
-  console.log(`server is listening on ${port}`)
-})
+//   console.log(`server is listening on ${port}`)
+// })
+
+
+
+ 
+server.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
